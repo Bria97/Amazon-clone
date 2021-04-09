@@ -17,12 +17,16 @@ function Product(props) {
             
             {/* PRODUCT RATING */}
             <Rating>
-            ⭐️⭐️⭐️⭐️⭐️
+                {
+                Array(props.rating)
+                .fill()
+                .map(rating => <p>⭐️</p>)
+                }
             </Rating>
 
 
             {/* PRODUCT IMAGE */}
-            <Image src={props.image} />
+            <Image src={ props.image } />
 
             <ActionSection>
             {/* Add To Cart */}
@@ -56,7 +60,9 @@ const Price = styled.span`
 
 `;
 
-const Rating = styled.div``;
+const Rating = styled.div`
+    display: flex;
+`;
 
 const Image = styled.img`
     max-height: 200px;
