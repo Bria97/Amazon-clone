@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Product() {
+function Product(props) {
+
     return (
         <Container>
             {/* PRODUCT NAME */}
             <Title>
-                iPad Pro
+                { props.title }
             </Title>
 
             {/* PRODUCT PRICE */}
             <Price>
-                $1449
+                ${ props.price }
             </Price>
             
             {/* PRODUCT RATING */}
@@ -21,7 +22,7 @@ function Product() {
 
 
             {/* PRODUCT IMAGE */}
-            <Image src="https://images-na.ssl-images-amazon.com/images/I/81SGb5l%2BlZL._AC_SX342_.jpg" />
+            <Image src={props.image} />
 
             <ActionSection>
             {/* Add To Cart */}
