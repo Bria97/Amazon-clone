@@ -1,25 +1,46 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
-
 import Header from './Header';
 import Cart from './Cart';
 import Home from './Home';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled from 'styled-components';
+import { db } from './firebase';
+import { Container } from '@material-ui/core';
+
 
 function App() {
+  const [cartItems, setCartItems] = useState([]);
+
+  const getCartItems = () => {
+    db.collection('cartItems').onSnapshot((snapshot) => {
+      const tempItems = snapshot.docs.map((doc) => ({ 
+        id: doc.id,
+        product: doc.data()
+      }))
+    
+      setCartItems(tempItems);
+    })
+  }
+
+  useEffect (() => {
+    getCartItems();
+  }, [])
+
+  console.log(cartItems);
+
   return (
     <Router>
-    <div className="App">
+    <Container>
       {/* HEADER COMPONENT */}
-      <Header />
+      <Header cartItems ={cartItems} />
       
       
       <Switch>
 
         {/* CART */}
         <Route path = "/cart">
-        <Cart />
+        <Cart cartItems = {cartItems} />
         </Route>
       
         {/* HOME */}
@@ -28,7 +49,7 @@ function App() {
         </Route>
 
       </Switch>
-    </div>
+    </Container>
     </Router>
   );
 }
