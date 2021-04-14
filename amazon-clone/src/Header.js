@@ -6,7 +6,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { Link } from "react-router-dom";
 
 
-function Header({ cartItems }) {
+function Header({ cartItems, user, signOut }) {
 
     const getCount = () => {
         let count = 0;
@@ -58,8 +58,8 @@ function Header({ cartItems }) {
                 CART ICON */}
             <HeaderNavItems>
 
-                <HeaderOption>
-                    <OptionLineOne>Hello, Bria</OptionLineOne>
+                <HeaderOption onClick={signOut}>
+                    <OptionLineOne>Hello, {user.name}</OptionLineOne>
                     <OptionLineTwo>Account & Lists</OptionLineTwo>
                 </HeaderOption>
 

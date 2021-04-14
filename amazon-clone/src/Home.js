@@ -23,10 +23,11 @@ function Home() {
         }
 
         useEffect(() => {
+            console.log("Call products");
             getProducts()
         }, [])
 
-        console.log(products);
+
 
     return (
 <Container>
